@@ -2,21 +2,17 @@ package main
 
 import (
   "fmt"
-  "math"
 )
 
-func Sqrt(x float64, z float64) float64 {
-  for {
-    var temp = z - ((math.Pow(z, 2) - x) / (2 * z))
-    if temp == z {
-      return z
-    } else {
-      z = temp
-    }
-  }
+type Vertex struct {
+  X int
+  Y int
 }
 
 func main(){
-  fmt.Println(Sqrt(2000, 1))
+  p := Vertex{1, 2}
+  q := &p
+  q.X = 1e9
+  fmt.Println(p)
 }
 
