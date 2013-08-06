@@ -1,22 +1,13 @@
 package main
 
-import (
-  "fmt"
-)
-
-type Vertex struct {
-  X int
-  Y int
-}
-
-var (
-  p = Vertex{1,2}
-  q = &Vertex{1,2}
-  r = Vertex{X: 1}
-  s = Vertex{}
-)
+import "fmt"
 
 func main(){
-  fmt.Println(p, q, r, s)
+  p := []int{2,3,5,7,11,13}
+  fmt.Println("p ==", p)
+
+  for i := 0; i < len(p); i++ {
+    fmt.Printf("p[%d] == %d\n", i, p[i])
+  }
 }
 
