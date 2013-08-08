@@ -1,15 +1,24 @@
 package main
 
-import "fmt"
 
-func main(){
-  pow := make([]int, 10)
-  for i := range pow {
-    pow[i] = 1 << uint(i)
+import (
+  "code.google.com/p/go-tour/pic"
+)
+
+func Pic(dx, dy int) [][]uint8 {
+  ary := make([][]uint8, dy)
+  for i := 0; i < dy; i++ {
+    ary2 := make([]uint8, dx)
+    for j := 0; j < dx; j++ {
+      var pixel = uint8(j * i)
+      ary2[j] = pixel
+    }
+    ary[i] = ary2
   }
-  for _, value := range pow {
-    fmt.Printf("%d\n", value)
-  }
+  return ary
 }
 
+func main(){
+  pic.Show(Pic)
+}
 
