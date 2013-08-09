@@ -1,29 +1,24 @@
 package main
 
 import (
-  "code.google.com/p/go-tour/wc"
-  "strings"
+  "fmt"
 )
 
-func WordCount(s string) map[string]int {
-
-  var m = make(map[string]int)
-  var fields = strings.Fields(s)
-
-  for _, v:= range fields {
-    _, ok := m[v]
-    if ok {
-      m[v]++
-    } else {
-      m[v] = 1
-    }
+func adder() func(int) int {
+  sum := 0
+  return func(x int) int {
+    sum += x
+    return sum
   }
-
-  return m
-
 }
 
 func main(){
-  wc.Test(WordCount)
+  pos, neg := adder(), adder()
+  for i := 0; i < 10; i++ {
+    fmt.Println(
+      pos(i),
+      neg(-2*i),
+    )
+  }
 }
 
