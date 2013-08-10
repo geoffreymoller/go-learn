@@ -2,12 +2,12 @@ package main
 
 import (
 	"fmt"
-	"math"
+	"math/cmplx"
 )
 
-func Cbrt(x float64, z float64) float64 {
+func Cbrt(x complex128, z complex128) complex128 {
 	for {
-		var temp = z - ((math.Pow(z, 3) - x) / (3 * math.Pow(z, 2)))
+		var temp = z - ((cmplx.Pow(z, 3) - x) / (3 * cmplx.Pow(z, 2)))
 		if temp == z {
 			return z
 		} else {
