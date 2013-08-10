@@ -2,30 +2,20 @@ package main
 
 import (
   "fmt"
+  "runtime"
 )
 
-func fibonacci() func() int {
-  var count, sum, first, second int
-  return func() int {
-    if count == 0 {
-      count++
-      return 0
-    } else if count == 1 {
-      second = count
-      count++
-      return 1
-    }
-    sum = first + second
-    first = second
-    second = sum
-    return sum
-  }
-}
-
 func main(){
-  f := fibonacci()
-  for i := 0; i < 10; i++ {
-    fmt.Println(f());
+  fmt.Print("Go runs on ")
+  switch os := runtime.GOOS; os {
+    case "darwin":
+      fmt.Println("OS X.")
+    case "linuk":
+      fmt.Println("Linux.")
+    default:
+      //freebsd, openbsd,
+      //plan9, windows...
+      fmt.Printf("%s.", os)
   }
 }
 
