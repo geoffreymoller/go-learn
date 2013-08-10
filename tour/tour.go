@@ -2,21 +2,19 @@ package main
 
 import (
 	"fmt"
-	"math/cmplx"
+	"math"
 )
 
-func Cbrt(x complex128, z complex128) complex128 {
-	for {
-		var temp = z - ((cmplx.Pow(z, 3) - x) / (3 * cmplx.Pow(z, 2)))
-		if temp == z {
-			return z
-		} else {
-			z = temp
-		}
-	}
+type Vertex struct {
+  X, Y float64
+}
+
+func (v *Vertex) Abs() float64 {
+  return math.Sqrt(v.X*v.X + v.Y*v.Y)
 }
 
 func main() {
-	fmt.Println(Cbrt(2, 1.33))
+  v := &Vertex{3,4}
+  fmt.Println(v.Abs())
 }
 
