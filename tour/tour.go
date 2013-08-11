@@ -2,39 +2,29 @@ package main
 
 import (
 	"fmt"
-	"math"
+	"time"
 )
 
-func main() {
-  var a Abser
-  f := MyFloat(-math.Sqrt2)
-  v := Vertex{3,4}
-
-  a = f //a MyFloat implements Abser
-  a = &v // a *Vertex implements Abser
-  //a = v // a Vertex, does NOT implement Abser
-
-  fmt.Println(a.Abs())
+type MyError struct {
+  When time.Time
+  What string
 }
 
-type Abser interface {
-  Abs() float64
+func (e *MyError) Error() string {
+  return fmt.Sprintf("at %v, %s",
+      e.When, e.What)
 }
 
-type MyFloat float64
-
-func (f MyFloat) Abs() float64 {
-  if f < 0 {
-    return float64(-f)
+func run() error {
+  return &MyError{
+    time.Now(),
+    "it didn't work",
   }
-  return float64(f)
 }
 
-type Vertex struct {
-  X, Y float64
-}
-
-func (v *Vertex) Abs() float64 {
-  return math.Sqrt(v.X*v.X + v.Y*v.Y)
+func main() {
+  if err := run(); err != nil {
+    fmt.Println(err)
+  }
 }
 
